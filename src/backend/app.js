@@ -1,0 +1,87 @@
+
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+require('dotenv').config();
+
+const logger = require('./utils/winston');
+const userRoutes = require('./routes/user');
+const binRoutes = require('./routes/bin');
+
+const app = express();
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
+// serve static files out of public folder
+// app.use(express.static('public'));
+
+// parse request bodies
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+const mongoOptions = {
+//   user: process.env.MONGO_USERNAME,
+//   pass: process.env.MONGO_PASSWORD,
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+  useUnifiedTopology: true
+};
+
+// Mongoose to use the global promise library
+mongoose.Promise = global.Promise;
+try {
+  mongoose.connect(process.env.MONGO_URI, mongoOptions);
+} catch (error) {
+  logger.error(`Mongoose | ${error.message}`);
+}
+
+// Get the default connection
+const db = mongoose.connection;
+db.on('error', (err) => {
+  logger.error(`MongoDB | ${err.message}`);
+});
+
+// server start listening once connected to db
+db.on('open', () => {
+  logger.info('MongoDB is up');
+  app.listen(process.env.PORT).on('listening', () => logger.info('Server listening'))
+    .on('error', (err) => { logger.error(`Server | ${err.message}`); });
+});
+
+// map endpoint path to route file
+app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/bins', binRoutes);
+
+// any invalid endpoints that don't match the above are handled here
+app.use((req, res, next) => {
+  if (res.headersSent) {
+    // express handles this if headers had already been sent and sth went wrong
+    next();
+    return;
+  }
+  // we handle it
+  // make a new error instance and forward it to the error-handler using next()
+  const error = new Error('Not Found');
+  error.status = 404;
+  next(error);
+});
+
+// custom error handling middleware i.e. for errors passed in next(error)
+app.use((err, req, res, next) => {
+  // TODO:log these errors
+  if (res.headersSent) {
+    // express handles the error if headers had already been sent and sth went wrong
+    next(err);
+    logger.error(`${req.url} | ${err.message}`);
+    return;
+  }
+  // set status to the status code of the error, otherwise 500 is default e.g. for db errors
+  res.status(err.status || 500);
+  res.set({ 'Content-type': 'application/json' });
+  res.json({ message: err.message });
+  logger.error(`${req.url} | ${err.message}`);
+});

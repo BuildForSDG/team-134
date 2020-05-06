@@ -6,7 +6,7 @@
     "js-starter",
     "boilerplate"
   ],
-  "private": false,
+  "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "directories": {
@@ -45,5 +45,6 @@
   },
   "browserslist": [
     "last 1 Chrome versions"
-  ]
+  ],
+  "workspaces": ["src/frontend", "src/backend"]
 }
