@@ -10,7 +10,9 @@
   "scripts": {
     "start": "node app.js",
     "dev-server": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cover": "jest --coverage"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -20,8 +22,9 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.12",
+    "morgan": "^1.10.0",
     "winston": "^3.2.1",
-    "morgan": "^1.10.0"
+    "mongodb-memory-server": "^6.5.2"
   },
   "devDependencies": {
     "jest": "^26.0.1",
