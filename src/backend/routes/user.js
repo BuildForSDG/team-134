@@ -1,8 +1,7 @@
 
 const router = require('express').Router();
-const { testEndpoint } = require('../controllers/user');
+const userRoutes = require('../controllers/user');
 
-// TODO: remove this, is just a test of the setup
-router.get('/test', testEndpoint);
+router.post('/', userRoutes.signup); // user signup route & logic
 
 module.exports = router;
