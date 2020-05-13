@@ -72,7 +72,7 @@ describe('User', () => {
     });
 
     // PUT /users/:id
-    test('user can update profile', (done) => {
+    test.only('user can update profile', (done) => {
       // given authenticated user
       // when they hit the endpoint PUT /users/:id
       axios

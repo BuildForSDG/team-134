@@ -5,11 +5,13 @@ require('dotenv').config('../.env');
 
 const User = require('../models/User');
 
+const saltRounds = 10; // number of salting rounds for bcrypt password hash
+
 const signup = (req, res, next) => {
   const { email, username, password } = req.body; // user attributes from request body
 
   bcrypt
-    .hash(password, 10)
+    .hash(password, saltRounds)
     .then((hash) => {
       // new user details
       const user = new User({
@@ -74,6 +76,8 @@ const login = (req, res, next) => {
             .json({
               code: 200,
               message: 'login successful',
+              // eslint-disable-next-line no-underscore-dangle
+              id: user._id,
               token
             });
         })
@@ -86,7 +90,41 @@ const login = (req, res, next) => {
     });
 };
 
+const updateUser = (req, res, next) => {
+  let user = new User({ _id: req.params.id }); // instantiate user with corresponding user _id
+
+  bcrypt
+    .hash(req.body.password, saltRounds)
+    .then((hash) => {
+      user = {
+        _id: req.params.id,
+        email: req.body.email,
+        username: req.body.email,
+        password: hash
+      }; // updated user attributes
+
+      User
+        .updateOne({ _id: req.params.id }, user)
+        // eslint-disable-next-line arrow-body-style
+        .then(() => {
+          return res
+            .status(201)
+            .json({
+              message: 'user successfully updated',
+              code: 201
+            });
+        })
+        .catch((err) => {
+          next(err); // channel error to error handler
+        });
+    })
+    .catch((error) => {
+      next(error); // channel error to error handler
+    });
+};
+
 module.exports = {
   signup,
-  login
+  login,
+  updateUser
 };
