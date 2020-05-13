@@ -75,6 +75,7 @@ db.on('open', () => {
 // map endpoint path to route file
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/bins', binRoutes);
+app.use('/api/v1', userRoutes); // to allow POST /login route
 
 // any invalid endpoints that don't match the above are handled here
 app.use((req, res, next) => {

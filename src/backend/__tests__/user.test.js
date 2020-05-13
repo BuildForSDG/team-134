@@ -66,7 +66,7 @@ describe('User', () => {
     });
 
     // POST /login
-    test('user can login', () => {
+    test.only('user can login', () => {
       // expects token not to be null
       expect(token).not.toBeNull();
     });
