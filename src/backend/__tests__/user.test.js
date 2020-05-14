@@ -41,7 +41,7 @@ describe('User', () => {
 
 
   // POST /users (register new user)
-  test.only('user can register', () => {
+  test('user can register', () => {
     // this expects global var resBody to have success message
     expect(resBody.message).toBe('user successfully created');
   });
@@ -66,13 +66,13 @@ describe('User', () => {
     });
 
     // POST /login
-    test.only('user can login', () => {
+    test('user can login', () => {
       // expects token not to be null
       expect(token).not.toBeNull();
     });
 
     // PUT /users/:id
-    test.only('user can update profile', (done) => {
+    test('user can update profile', (done) => {
       // given authenticated user
       // when they hit the endpoint PUT /users/:id
       axios
@@ -85,7 +85,7 @@ describe('User', () => {
           },
           {
             headers: {
-              authorization: `bearer ${token}`
+              authorization: token
             }
           }
         )
@@ -114,7 +114,7 @@ describe('User', () => {
           `/users/${authUserId}`, // authUserId is id of a logged in user
           {
             headers: {
-              authorization: `bearer ${token}`
+              authorization: token
             },
             data: {
               id: authUserId
