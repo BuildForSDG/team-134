@@ -30,7 +30,7 @@ describe('User', () => {
       .then((response) => {
         // assign reponse object to globally available resBody
         // for use in assertions
-        resBody = response;
+        resBody = response.data;
 
         done();
       })
@@ -41,7 +41,7 @@ describe('User', () => {
 
 
   // POST /users (register new user)
-  test('user can register', () => {
+  test.only('user can register', () => {
     // this expects global var resBody to have success message
     expect(resBody.message).toBe('user successfully created');
   });
@@ -54,9 +54,9 @@ describe('User', () => {
       axios
         .post('/login', userData)
         .then((response) => {
-          token = response.token; // set global var token
+          token = response.data.token; // set global var token
 
-          authUserId = response.id; // logged in user _id for jwt auth purposes
+          authUserId = response.data.id; // logged in user _id for jwt auth purposes
 
           done();
         })
@@ -66,13 +66,13 @@ describe('User', () => {
     });
 
     // POST /login
-    test('user can login', () => {
+    test.only('user can login', () => {
       // expects token not to be null
       expect(token).not.toBeNull();
     });
 
     // PUT /users/:id
-    test('user can update profile', (done) => {
+    test.only('user can update profile', (done) => {
       // given authenticated user
       // when they hit the endpoint PUT /users/:id
       axios
@@ -91,7 +91,7 @@ describe('User', () => {
         )
         .then((response) => {
           // then there details are updated in db
-          expect(response.message).toBe('user successfully updated');
+          expect(response.data.message).toBe('user successfully updated');
 
           done();
         })
@@ -123,7 +123,7 @@ describe('User', () => {
         )
         .then((response) => {
           // then their account gets deleted
-          expect(response.message).toBe('user successfully deleted');
+          expect(response.data.message).toBe('user successfully deleted');
 
           done();
         })
