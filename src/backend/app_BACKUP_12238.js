@@ -3,7 +3,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+<<<<<<< HEAD
+=======
 const { MongoMemoryServer } = require('mongodb-memory-server'); // for use with tests
+>>>>>>> 13347346400347644f5e8580f5c2b53446e4b775
 require('dotenv').config();
 
 const logger = require('./utils/winston');

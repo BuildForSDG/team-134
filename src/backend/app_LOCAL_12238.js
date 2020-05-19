@@ -3,7 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const { MongoMemoryServer } = require('mongodb-memory-server'); // for use with tests
 require('dotenv').config();
 
 const logger = require('./utils/winston');
@@ -24,39 +23,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const mongoOptions = {
-  //   user: process.env.MONGO_USERNAME,
-  //   pass: process.env.MONGO_PASSWORD,
+//   user: process.env.MONGO_USERNAME,
+//   pass: process.env.MONGO_PASSWORD,
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,
   useUnifiedTopology: true
 };
 
-// a MongoDB server running on memory for use with tests
-const mongoServer = new MongoMemoryServer();
-
 // Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
-
-// if the NODE_ENV_TESTING var is set to true
-// use mongodb in-memory server
-if (process.env.NODE_ENV_TESTING) {
-  try {
-    // connect to in-memory mongodb Server
-    // eslint-disable-next-line no-underscore-dangle
-    mongoServer.getUri().then((mongoUri) => {
-      mongoose.connect(mongoUri, mongoOptions);
-    });
-  } catch (error) {
-    logger.error(`Mongoose | ${error.message}`);
-  }
-} else {
-  // use mongodb atlas in development & production
-  try {
-    mongoose.connect(process.env.MONGO_URI, mongoOptions);
-  } catch (error) {
-    logger.error(`Mongoose | ${error.message}`);
-  }
+try {
+  mongoose.connect(process.env.MONGO_URI, mongoOptions);
+} catch (error) {
+  logger.error(`Mongoose | ${error.message}`);
 }
 
 // Get the default connection
