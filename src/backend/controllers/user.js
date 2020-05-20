@@ -105,15 +105,12 @@ const updateUser = (req, res, next) => {
 
       User
         .updateOne({ _id: req.params.id }, user)
-        // eslint-disable-next-line arrow-body-style
-        .then(() => {
-          return res
-            .status(201)
-            .json({
-              message: 'user successfully updated',
-              code: 201
-            });
-        })
+        .then(() => res
+          .status(201)
+          .json({
+            message: 'user successfully updated',
+            code: 201
+          }))
         .catch((err) => {
           next(err); // channel error to error handler
         });
@@ -123,8 +120,23 @@ const updateUser = (req, res, next) => {
     });
 };
 
+const deleteUser = (req, res, next) => {
+  User
+    .deleteOne({ _id: req.params.id })
+    .then(() => res
+      .status(201)
+      .json({
+        message: 'user successfully deleted',
+        code: 201
+      }))
+    .catch((error) => {
+      next(error); // channel error to error handler in app.js
+    });
+};
+
 module.exports = {
   signup,
   login,
-  updateUser
+  updateUser,
+  deleteUser
 };
