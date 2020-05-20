@@ -1,8 +1,8 @@
 
 const router = require('express').Router();
-const { testEndpoint } = require('../controllers/bin');
+const { createBin } = require('../controllers/bin');
 
-// TODO: remove this, is just a test of the setup
-router.get('/test', testEndpoint);
+// create bin
+router.post('/', createBin);
 
 module.exports = router;
