@@ -11,3 +11,12 @@ exports.createBin = async (req, res, next) => {
     next(error); // this will go to the error handler in app.js e.g. if there's a db error above
   }
 };
+
+exports.getAllBins = async (req, res, next) => {
+  try {
+    const list = await Bin.find({}).lean().exec();
+    res.status(200).json(list);
+  } catch (error) {
+    next(error);
+  }
+};
