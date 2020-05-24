@@ -1,10 +1,12 @@
 
-const logger = require('../utils/winston');
+const Bin = require('../models/Bin');
 
-exports.testEndpoint = async (req, res, next) => {
+exports.createBin = async (req, res, next) => {
   try {
-    res.status(200).json({ test: 'OK' });
-    logger.debug('This was a test');
+    const bin = new Bin(req.body);
+    const doc = await bin.save();
+    // eslint-disable-next-line no-underscore-dangle
+    res.status(201).json({ binId: doc._id });
   } catch (error) {
     next(error); // this will go to the error handler in app.js e.g. if there's a db error above
   }
