@@ -20,3 +20,12 @@ exports.getAllBins = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getBin = async (req, res, next) => {
+  try {
+    const bin = await Bin.findById(req.params.id).lean().exec();
+    res.status(200).json(bin);
+  } catch (error) {
+    next(error);
+  }
+};

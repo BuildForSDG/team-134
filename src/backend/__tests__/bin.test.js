@@ -46,4 +46,17 @@ describe('Bin Tests', () => {
       }
     });
   });
+
+  describe('Get Bin By Id', () => {
+    test('Axios GET with ID', async (done) => {
+      try {
+        const response = await axios.get(`/${binId}`);
+        expect(response.status).toBe(200);
+        expect(response.data).not.toBeNull();
+        done();
+      } catch (error) {
+        done(error);
+      }
+    });
+  });
 });
