@@ -59,4 +59,20 @@ describe('Bin Tests', () => {
       }
     });
   });
+
+  describe('Update Bin', () => {
+    test('Axios PUT', async (done) => {
+      try {
+        const data = {
+          current_height: 20,
+          current_weight: 30
+        };
+        const response = await axios.put(`/${binId}`, data);
+        expect(response.status).toBe(201);
+        done();
+      } catch (error) {
+        done(error);
+      }
+    });
+  });
 });

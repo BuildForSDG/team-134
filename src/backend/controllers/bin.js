@@ -29,3 +29,18 @@ exports.getBin = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.updateBin = async (req, res, next) => {
+  try {
+    // eslint-disable-next-line camelcase
+    const updateObj = req.body;
+    const result = await Bin.updateOne({ _id: req.params.id }, updateObj).exec();
+    if (result.n === 0) {
+      res.status(404).json({ message: 'No bin matches that id' });
+      return;
+    }
+    res.sendStatus(201);
+  } catch (error) {
+    next(error);
+  }
+};
