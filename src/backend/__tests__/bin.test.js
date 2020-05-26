@@ -75,4 +75,16 @@ describe('Bin Tests', () => {
       }
     });
   });
+
+  describe('Delete Bin', () => {
+    test('Axios DELETE', async (done) => {
+      try {
+        const response = await axios.delete(`/${binId}`);
+        expect(response.status).toBe(201);
+        done();
+      } catch (error) {
+        done(error);
+      }
+    });
+  });
 });
