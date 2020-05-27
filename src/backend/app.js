@@ -37,15 +37,15 @@ const mongoServer = new MongoMemoryServer();
 
 // Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
-
-// if the NODE_ENV_TESTING var is set to true
+// if the NODE_ENV_TESTING var is set to true // the var is a string
 // use mongodb in-memory server
-if (process.env.NODE_ENV_TESTING) {
+if (process.env.NODE_ENV_TESTING === 'true') {
   try {
     // connect to in-memory mongodb Server
     // eslint-disable-next-line no-underscore-dangle
     mongoServer.getUri().then((mongoUri) => {
       mongoose.connect(mongoUri, mongoOptions);
+      logger.debug('using mongo-memory-server');
     });
   } catch (error) {
     logger.error(`Mongoose | ${error.message}`);
