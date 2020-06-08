@@ -9,6 +9,7 @@ require('dotenv').config();
 const logger = require('./utils/winston');
 const userRoutes = require('./routes/user');
 const binRoutes = require('./routes/bin');
+const auth = require('./middleware/auth');
 
 const app = express();
 
@@ -74,7 +75,7 @@ db.on('open', () => {
 
 // map endpoint path to route file
 app.use('/api/v1/users', userRoutes);
-app.use('/api/v1/bins', binRoutes);
+app.use('/api/v1/bins', auth, binRoutes);
 app.use('/api/v1', userRoutes); // to allow POST /login route
 
 // any invalid endpoints that don't match the above are handled here

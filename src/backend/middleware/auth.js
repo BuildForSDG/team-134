@@ -7,7 +7,8 @@ module.exports = (req, res, next) => {
     const token = req.headers.authorization; // extract authorization header
     const decodeToken = jwt.verify(token, process.env.TOKEN_SECRET); // decrypt token
     const { id } = decodeToken; // extract payload data from decodedToken
-    if (req.params.id !== id) {
+    // look for userid in either params or headers, if not found then unauthorize
+    if (req.params.id !== id && req.headers.userid !== id) {
       return res
         .status(401)
         .json({
