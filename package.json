@@ -46,5 +46,5 @@
   "browserslist": [
     "last 1 Chrome versions"
   ],
-  "workspaces": ["src/frontend", "src/backend"]
+  "workspaces": ["./src/frontend", "./src/backend"]
 }
