@@ -74,8 +74,7 @@ p.b {
     margin-top: 7px;
 }
 
-@media only screen and (max-width:800px) {
-    /* For tablets: */
+@media only screen and (max-width: 800px) {
     .main {
         width: 80%;
         padding: 0;
@@ -85,8 +84,7 @@ p.b {
     }
 }
 
-@media only screen and (max-width:500px) {
-    /* For mobile phones: */
+@media only screen and (max-width: 500px) {
     .menu,
     .main,
     .right {
@@ -100,9 +98,6 @@ p.b {
     margin-bottom: 16px;
     padding: 0 8px;
 }
-
-
-/* Display the columns below each other instead of side by side on small screens */
 
 @media screen and (max-width: 650px) {
     .column {
