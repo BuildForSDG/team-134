@@ -84,7 +84,7 @@ p.b {
     }
 }
 
-@media only screen and (max-width:500px) {
+@media only screen and (max-width: 500px) {
     .menu,
     .main,
     .right {
