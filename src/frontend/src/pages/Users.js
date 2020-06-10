@@ -15,9 +15,7 @@ export class Users extends Component {
 
   render(){
     return(
-      <h1 style={{color: '#000000'}}>
-        Users
-      </h1>
+      <h1 style={{color: '#000000'}}>Users</h1>
     );
   }
 };
