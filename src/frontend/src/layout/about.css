@@ -155,3 +155,23 @@ p.b {
 .button:hover {
   background-color: #4CAF50;
 }
+
+.card-container {
+  margin-top: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.img-container {
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.image-slider {
+  position: relative;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 2% !important;
+}

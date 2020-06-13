@@ -1,0 +1,14 @@
+
+.bins-content {
+  margin-top: 2%;
+  padding-right: 5%;
+  padding-left: 1%;
+  display: flex;
+  flex-direction: row;
+}
+
+.bin-card {
+  margin-left: 10%;
+  width: 30em;
+  height: 15em;
+}

@@ -4,14 +4,13 @@ import ReactDOM from 'react-dom';
 import App from './pages/App';
 import { Main } from './components/Main';
 //import * as serviceWorker from './serviceWorker';
-import { HashRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route } from 'react-router-dom'
 
 import ScrollToTop from './components/ScrollToTop';
 
 ReactDOM.render(
     <HashRouter>
         <ScrollToTop>
-            {/* <Main/> */}
             <Route path='/' exact component={Main}/>
             <Route path='/contact' component={Main}/>
             <Route path='/about' component={Main}/>

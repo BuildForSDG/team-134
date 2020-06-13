@@ -1,7 +1,6 @@
 {
-    "name": "sigma-react",
+    "name": "team-134-frontend",
     "version": "3.0.1-SNAPSHOT",
-    "homepage": "/sigma-react",
     "private": false,
     "repository": {
         "type": "git",
@@ -9,10 +8,6 @@
     },
     "license": "MIT",
     "dependencies": {
-        "@fullcalendar/core": "4.0.2",
-        "@fullcalendar/daygrid": "4.0.1",
-        "@fullcalendar/interaction": "4.0.2",
-        "@fullcalendar/timegrid": "4.0.1",
         "axios": "^0.19.0",
         "chart.js": "2.7.3",
         "classnames": "^2.2.6",
@@ -26,7 +21,9 @@
         "react-dom": "^16.8.6",
         "react-router-dom": "^4.3.1",
         "react-scripts": "3.0.1",
-        "react-transition-group": "^2.5.1"
+        "react-simple-image-slider": "^1.0.3",
+        "react-transition-group": "^2.5.1",
+        "socket.io-client": "^2.3.0"
     },
     "scripts": {
         "start": "react-scripts start",
@@ -37,6 +34,7 @@
     "eslintConfig": {
         "extends": "react-app"
     },
+    "proxy": "http://localhost:5000",
     "browserslist": [
         ">0.2%",
         "not dead",

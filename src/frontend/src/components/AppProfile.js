@@ -9,6 +9,7 @@ export class AppProfile extends Component {
             expanded: false
         };
         this.onClick = this.onClick.bind(this);
+        this.userName = sessionStorage.getItem('userName');
     }
 
     onClick(event) {
@@ -23,7 +24,7 @@ export class AppProfile extends Component {
                     <img src="assets/layout/images/profile.png" alt="" />
                 </div>
                 <button className="p-link layout-profile-link" onClick={this.onClick}>
-                    <span className="username">Claire Williams</span>
+                    <span className="username">{this.userName}</span>
                     <i className="pi pi-fw pi-cog"/>
                 </button>
                 <ul className={classNames({'layout-profile-expanded': this.state.expanded})}>
