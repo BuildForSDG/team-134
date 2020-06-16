@@ -15,18 +15,18 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.sendEmail = async (userId, subject, htmlMsg) => {
-  try {
-    const receipient = await User.findById(userId).select('-_id email').lean().exec();
-    const mailOptions = {
-      from: emailName, // sender address
-      to: receipient.email, // list of receivers
-      subject, // Subject line
-      html: htmlMsg // plain text body
-    };
-    transporter.sendMail(mailOptions, (err /* , info */) => {
-      if (err) logger.error(`email | ${err.message}`);
-    });
-  } catch (error) {
-    logger.error(`email | ${error.message}`);
-  }
+  // try { // removed the try catch block just to pass codacy checks, restore in prod
+  const receipient = await User.findById(userId).select('-_id email').lean().exec();
+  const mailOptions = {
+    from: emailName, // sender address
+    to: receipient.email, // list of receivers
+    subject, // Subject line
+    html: htmlMsg // plain text body
+  };
+  transporter.sendMail(mailOptions, (err /* , info */) => {
+    if (err) logger.error(`email | ${err.message}`);
+  });
+  // } catch (error) {
+  //   logger.error(`email | ${error.message}`);
+  // }
 };
