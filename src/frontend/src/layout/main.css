@@ -3,3 +3,8 @@
   background-image: url('../images/home-bkgrnd.jpg');
   height: 100%;
 }
+
+body {
+  font-family: "Lato", sans-serif !important;
+  font-size: medium;
+}

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {Chart} from 'primereact/chart';
-import UserService from '../services/users';
+import {UserService} from '../services/users';
 
 export class Users extends Component {
   constructor(){

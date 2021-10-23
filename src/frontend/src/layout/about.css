@@ -30,16 +30,24 @@
 
 h1 {
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 50px;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 50px; */
+  font-family: "Lato", sans-serif !important;
+  font-size: medium;
   color: white;
 }
 
 h2 {
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 30px;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 30px; */
   color: white;
+  font-family: "Lato", sans-serif !important;
+  font-size: medium;
+}
+
+.card-container h2 {
+  color: black;
 }
 
 p.b {
@@ -154,4 +162,24 @@ p.b {
 
 .button:hover {
   background-color: #4CAF50;
+}
+
+.card-container {
+  margin-top: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.img-container {
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.image-slider {
+  position: relative;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 2% !important;
 }

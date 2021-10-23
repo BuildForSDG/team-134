@@ -8,17 +8,14 @@ import {Route} from 'react-router-dom';
 
 import {Overview} from './Overview';
 import { Bins } from './Bins';
-import { Users } from './Users';
-import { About } from './About';
-import { Contact } from './Contact';
 
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
-import '@fullcalendar/core/main.css';
-import '@fullcalendar/daygrid/main.css';
-import '@fullcalendar/timegrid/main.css';
+// import '@fullcalendar/core/main.css';
+// import '@fullcalendar/daygrid/main.css';
+// import '@fullcalendar/timegrid/main.css';
 import '../layout/layout.scss';
 import './App.scss';
 
@@ -26,6 +23,7 @@ class App extends Component {
 
     constructor() {
         super();
+
         this.state = {
             layoutMode: 'static',
             layoutColorMode: 'dark',
@@ -93,8 +91,8 @@ class App extends Component {
     createMenu() {
         this.menu = [
             {label: 'Overview', icon: 'pi pi-fw pi-home', command: () => {window.location = '#/dashboard'}},
-            {label: 'Bins', icon: 'pi pi-fw pi-home', command: () => {window.location = '#/dashboard/bins'}},
-            {label: 'Users', icon: 'pi pi-fw pi-home', command: () => {window.location = '#/dashboard/users'}}
+            {label: 'Bins', icon: 'pi pi-fw pi-trash', command: () => {window.location = '#/dashboard/bins'}}
+            // {label: 'Users', icon: 'pi pi-fw pi-users', command: () => {window.location = '#/dashboard/users'}}
             // {label: 'About Us', icon: 'pi pi-fw pi-home', command: () => {window.location = '#/about'}},
             // {label: 'Contact Us', icon: 'pi pi-fw pi-home', command: () => {window.location = '#/contact'}}
         ];
@@ -126,8 +124,11 @@ class App extends Component {
     }
 
     render() {
-        const logo = this.state.layoutColorMode === 'dark' ? 'assets/layout/images/logo-white.svg': 'assets/layout/images/logo.svg';
-
+        // const logo = this.state.layoutColorMode === 'dark' ? 'assets/layout/images/logo-white.svg': 'assets/layout/images/logo.svg';
+        if(sessionStorage.getItem('userId') == null && sessionStorage.getItem('authToken') == null){
+            window.location = '#/';
+            return null;
+        }
         const wrapperClass = classNames('layout-wrapper', {
             'layout-overlay': this.state.layoutMode === 'overlay',
             'layout-static': this.state.layoutMode === 'static',
@@ -148,7 +149,7 @@ class App extends Component {
                 <div ref={(el) => this.sidebar = el} className={sidebarClassName} onClick={this.onSidebarClick}>
                     <div className="layout-logo">
                         {/* <img alt="Logo" src={logo} /> */}
-                        <h2 style={{color: '#FFFFFF'}}>Smart Bin</h2>
+                        <h2 style={{color: '#FFFFFF'}}>PingBin</h2>
                     </div>
                     <AppProfile />
                     <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} />
@@ -157,7 +158,7 @@ class App extends Component {
                 <div className="layout-main">
                     <Route path="/dashboard" exact component={Overview} />
                     <Route path="/dashboard/bins" component={Bins}/>
-                    <Route path="/dashboard/users" component={Users}/>
+                    {/* <Route path="/dashboard/users" component={Users}/> */}
                     {/* <Route path="/about" component={About}/>
                     <Route path="/contact" component={Contact}/> */}
                 </div>

@@ -1,0 +1,52 @@
+
+.bins-content {
+  margin-top: 2%;
+  padding-right: 5%;
+  padding-left: 5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.bin-card {
+  width: 28em;
+  height: 15em;
+}
+
+.orient-horiz{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orient-vertical{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* .orient-vertical div{
+  align-content: center;
+} */
+
+.p-dialog.edit-dialog{
+  width: 40%;
+  max-height: 80%;
+}
+
+/* .edit-dialog span{
+  margin-top: 5%;
+} */
+
+/* .edit-dialog .right-align{
+  float: right;
+  margin-right: 5%;
+} */
+
+.orient-vertical .p-inputtext {
+  width: 60% !important;
+  margin-right: 10%;
+}

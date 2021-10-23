@@ -19,7 +19,7 @@ export class AppTopbar extends Component {
                     <span className="pi pi-bars"/>
                 </button>
                 <div className="layout-topbar-icons">
-                    <span className="layout-topbar-search">
+                    {/* <span className="layout-topbar-search">
                         <InputText type="text" placeholder="Search" />
                         <span className="layout-topbar-search-icon pi pi-search"/>
                     </span>
@@ -35,7 +35,7 @@ export class AppTopbar extends Component {
                     <button className="p-link">
                         <span className="layout-topbar-item-text">User</span>
                         <span className="layout-topbar-icon pi pi-user"/>
-                    </button>
+                    </button> */}
                 </div>
             </div>
         );
